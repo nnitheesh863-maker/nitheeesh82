@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Daily Quote Generator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #6dd5ed, #2193b0);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      color: #fff;
+    }
+    .container {
+      background: rgba(0,0,0,0.4);
+      padding: 30px;
+      border-radius: 15px;
+      text-align: center;
+      width: 400px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    }
+    h1 {
+      font-size: 24px;
+      margin-bottom: 15px;
+    }
+    #quote {
+      font-size: 18px;
+      margin: 20px 0 10px 0;
+      font-style: italic;
+    }
+    #author {
+      font-size: 16px;
+      margin-bottom: 20px;
+      color: #ffd700;
+    }
+    button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 10px;
+      background: #ff6b6b;
+      color: white;
+      cursor: pointer;
+      font-size: 16px;
+      margin: 5px;
+      transition: 0.3s;
+    }
+    button:hover {
+      background: #ff4757;
+    }
+    #total {
+      margin-top: 15px;
+      font-size: 14px;
+      color: #ddd;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>✨ Daily Quote Generator ✨</h1>
+    <p id="quote">Click the button to get inspired!</p>
+    <p id="author">– Author</p>
+    <button onclick="newQuote()">New Quote</button>
+    <button onclick="copyQuote()">📋 Copy</button>
+    <p id="total"></p>
+  </div>
+
+  <script>
+    // Array of quotes with author
+    const quotes = [
+      { text: "Believe in yourself and all that you are.", author: "Christian D. Larson" },
+      { text: "Every day is a second chance.", author: "Anonymous" },
+      { text: "Dream it. Wish it. Do it.", author: "Unknown" },
+      { text: "Hustle until you no longer need to introduce yourself.", author: "Anonymous" },
+      { text: "The best way to predict the future is to create it.", author: "Peter Drucker" },
+      { text: "Success is not final, failure is not fatal: It is the courage to continue that counts.", author: "Winston Churchill" },
+      { text: "Be yourself; everyone else is already taken.", author: "Oscar Wilde" },
+      { text: "Small steps every day lead to big results.", author: "Satya Nani" }
+    ];
+
+    // Function to display random quote
+    function newQuote() {
+      let random = Math.floor(Math.random() * quotes.length);
+      document.getElementById("quote").textContent = quotes[random].text;
+      document.getElementById("author").textContent = "– " + quotes[random].author;
+      document.getElementById("total").textContent = `Total Quotes: ${quotes.length}`;
+    }
+
+    // Function to copy quote
+    function copyQuote() {
+      let quote = document.getElementById("quote").textContent;
+      let author = document.getElementById("author").textContent;
+      navigator.clipboard.writeText(`${quote} ${author}`);
+      alert("✅ Quote copied to clipboard!");
+    }
+
+    // Show total quotes on load
+    document.getElementById("total").textContent = `Total Quotes: ${quotes.length}`;
+  </script>
+</body>
+</html>
